@@ -1,9 +1,10 @@
 import flet as ft
+import datetime as dt
 
 def main(page: ft.Page):
     text_hello = ft.Text(value='hello bekzhan')
     page.title = 'my first app'
-    page.theme_mode = ft.ThemeMode.SYSTEM
+    page.theme_mode = ft.ThemeMode.LIGHT
     # text_hello.value = 'Bekzhan'
     # text_hello.color = ft.Colors.GREEN_800
 
@@ -14,7 +15,9 @@ def main(page: ft.Page):
         # print(name_input.value)
         name = name_input.value
         if name:
-            text_hello.value = f'Hello {name}'
+            current_time = dt.datetime.now()
+            time_formatted = (current_time.strftime('%Y-%m-%d %H:%M:%S'))
+            text_hello.value = f'{time_formatted} - Hello, {name}'
             text_hello.color = None
             name_input.value = None
         else:
@@ -29,13 +32,12 @@ def main(page: ft.Page):
             page.theme_mode = ft.ThemeMode.LIGHT
             
 
-    elevatod_button = ft.ElevatedButton('send', on_click=text, icon=ft.Icons.SEND, icon_color=ft.Colors.BLACK)
+    elevatod_button = ft.ElevatedButton('send', on_click=text, icon=ft.Icons.SEND, icon_color=ft.Colors.BLACK, )
     icon_button = ft.IconButton(icon=ft.Icons.SETTINGS_APPLICATIONS_SHARP, on_click=back_theme)
 
-    name_input = ft.TextField(label='write something:', on_submit=text)
-
+    name_input = ft.TextField(label='write something:', on_submit=text,)
 
 
 # добавление на страницу
-    page.add(text_hello, name_input, elevatod_button, icon_button)
+    page.add(text_hello, name_input, elevatod_button, icon_button,)
 ft.app(target=main)
